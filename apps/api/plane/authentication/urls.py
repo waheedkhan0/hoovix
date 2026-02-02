@@ -46,6 +46,9 @@ from .views import (
     GiteaOauthInitiateSpaceEndpoint,
 )
 
+# Clerk authentication views
+from .views.app.clerk import ClerkUserSyncEndpoint, ClerkWebhookEndpoint
+
 urlpatterns = [
     # credentials
     path("sign-in/", SignInAuthEndpoint.as_view(), name="sign-in"),
@@ -150,4 +153,7 @@ urlpatterns = [
         GiteaCallbackSpaceEndpoint.as_view(),
         name="space-gitea-callback",
     ),
+    ## Clerk Authentication
+    path("clerk/sync/", ClerkUserSyncEndpoint.as_view(), name="clerk-sync"),
+    path("clerk/webhook/", ClerkWebhookEndpoint.as_view(), name="clerk-webhook"),
 ]

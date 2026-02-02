@@ -28,6 +28,7 @@ import { LogoSpinner } from "@/components/common/logo-spinner";
 // local
 import { CustomErrorComponent } from "./error";
 import { AppProvider } from "./provider";
+import { ClerkAuthProvider } from "./providers/clerk-provider";
 // fonts
 import "@fontsource-variable/inter";
 import interVariableWoff2 from "@fontsource-variable/inter/files/inter-latin-wght-normal.woff2?url";
@@ -123,13 +124,17 @@ export const meta: Route.MetaFunction = () => [
 
 export default function Root() {
   return (
-    <AppProvider>
-      <div className={cn("h-screen w-full overflow-hidden bg-canvas relative flex flex-col", "desktop-app-container")}>
-        <main className="w-full h-full overflow-hidden relative">
-          <Outlet />
-        </main>
-      </div>
-    </AppProvider>
+    <ClerkAuthProvider>
+      <AppProvider>
+        <div
+          className={cn("h-screen w-full overflow-hidden bg-canvas relative flex flex-col", "desktop-app-container")}
+        >
+          <main className="w-full h-full overflow-hidden relative">
+            <Outlet />
+          </main>
+        </div>
+      </AppProvider>
+    </ClerkAuthProvider>
   );
 }
 
